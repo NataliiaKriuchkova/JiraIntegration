@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "JiraIssue",
+  "type": "object",
+  "required": ["id", "key", "fields"],
+  "properties": {
+    "id": { "type": "string" },
+    "key": { "type": "string", "pattern": "^[A-Z]+-[0-9]+$" },
+    "fields": {
+      "type": "object",
+      "required": ["summary", "status"],
+      "properties": {
+        "summary": { "type": "string" },
+        "description": { "type": ["string", "null"] },
+        "status": {
+          "type": "object",
+          "required": ["name"],
+          "properties": { "name": { "type": "string" } }
+        },
+        "priority": {
+          "type": "object",
+          "properties": { "name": { "type": "string" } }
+        },
+        "assignee": {
+          "type": ["object", "null"],
+          "properties": {
+            "displayName": { "type": "string" },
+            "emailAddress": { "type": "string" }
+          }
+        },
+        "labels": {
+          "type": "array",
+          "items": { "type": "string" }
+        }
+      }
+    }
+  }
+}
